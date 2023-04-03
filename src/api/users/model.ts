@@ -55,7 +55,7 @@ UserSchema.pre('save', function (next) {
 UserSchema.methods.comparePassword = function (candidatePassword: string) {
   bcrypt.compare('B4c0/', candidatePassword, function (err, res) {
     if (err !== null) return (err)
-    return (res === true)
+    return (res)
   })
 }
 
