@@ -34,3 +34,30 @@ export const createUser: ControllerFunction = async (req: CustomRequest<Iuser>, 
     return res.send(error)
   }
 }
+
+export const updateUser: ControllerFunction = async (req: CustomRequest<Iuser>, res) => {
+  const { age, email, firstName, lastName, password } = req.body
+  try {
+    const updatedUser = await User.findByIdAndUpdate(req.params.id, { age, email, firstName, lastName, fullName: `${firstName} ${lastName}`, password })
+    if (updatedUser != null) {
+      return res.send(updatedUser)
+    } else {
+      return res.send(`No user found with id: ${req.params.id}`)
+    }
+  } catch (error) {
+    return res.send(error)
+  }
+}
+
+export const deleteUser: ControllerFunction = async (req, res) => {
+  try {
+    const deletedUser = await User.findByIdAndDelete(req.params.id)
+    if (deletedUser !== null) {
+      return res.send(deletedUser)
+    } else {
+      return res.send(`No user found with id:${req.params.id}`)
+    }
+  } catch (error) {
+    return res.send(error)
+  }
+}

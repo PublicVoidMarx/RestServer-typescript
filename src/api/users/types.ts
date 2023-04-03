@@ -9,3 +9,5 @@ export interface Iuser {
   password: string
   role: UserRoles
 }
+
+export type userUpdatePayload = Omit<Iuser, 'role'>
