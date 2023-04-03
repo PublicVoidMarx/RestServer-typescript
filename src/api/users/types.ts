@@ -6,5 +6,6 @@ export interface Iuser {
   fullName: string
   age: number
   email: string
+  password: string
   role: UserRoles
 }
