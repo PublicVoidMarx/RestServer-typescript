@@ -1,4 +1,4 @@
-import { diaryCreatePayload, Idiary, Visibility, Weather } from './api/diaries/types'
+import { diaryCreatePayload, Idiary, Visibility, Weather } from './diaries/types'
 
 const parseCommentRequest = (comment: any): string => {
   if (typeof comment !== 'string') {

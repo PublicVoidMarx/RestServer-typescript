@@ -1,18 +1,18 @@
 
 import { Request, Response } from 'express'
+import { ControllerFunction } from '../types'
 import { Diarie } from './model'
 
-export const getDiaries = async (_req: Request, res: Response): Promise<any> => {
+export const getDiaries: ControllerFunction = async (_req, res) => {
   try {
     const diaries = await Diarie.find()
-    res.send(diaries)
+    return res.send(diaries)
   } catch (error) {
-    res.send(error)
-    throw new Error('getDiaries error')
+    return res.send(error)
   }
 }
 
-export const getDiariesById = async (req: Request, res: Response): Promise<any> => {
+export const getDiariesById: ControllerFunction = async (req: Request, res: Response): Promise<any> => {
   try {
     const diarie = await Diarie.findById(req.params.id)
     res.send(diarie)
@@ -22,7 +22,7 @@ export const getDiariesById = async (req: Request, res: Response): Promise<any> 
   }
 }
 
-export const getDiariesWithoutSensitiveInfo = async (_req: Request, res: Response): Promise<any> => {
+export const getDiariesWithoutSensitiveInfo: ControllerFunction = async (_req: Request, res: Response): Promise<any> => {
   try {
     const diaries = await Diarie.find().select({
       _id: 0,
@@ -38,7 +38,7 @@ export const getDiariesWithoutSensitiveInfo = async (_req: Request, res: Respons
   }
 }
 
-export const addDiarie = async (req: Request, res: Response): Promise<any> => {
+export const addDiarie: ControllerFunction = async (req: Request, res: Response): Promise<any> => {
   const {
     weather,
     visibility,
@@ -55,7 +55,7 @@ export const addDiarie = async (req: Request, res: Response): Promise<any> => {
   }
 }
 
-export const deleteDiarie = async (req: Request, res: Response): Promise<any> => {
+export const deleteDiarie: ControllerFunction = async (req: Request, res: Response): Promise<any> => {
   try {
     const deletedDiarie = await Diarie.findByIdAndDelete(req.params.id)
     if (deletedDiarie != null) {

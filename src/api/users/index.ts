@@ -1,7 +1,6 @@
 import { Router } from 'express'
+import { getUsers } from './controller'
 
 export const router = Router()
 
-router.get('/', (_req, res) => {
-  res.send('all users')
-})
+router.get('/', getUsers)
